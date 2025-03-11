@@ -14,14 +14,11 @@ export default function Standings() {
         //staleTime: 3600000 // one hour in milliseconds
     })
 
-    let table
-    if (standings) {
-        table = useReactTable<TeamStandings>({ 
-            columns, 
-            data: standings,
-            getCoreRowModel: getCoreRowModel()
-        })
-    }
+    const table = useReactTable<TeamStandings>({ 
+        columns, 
+        data: standings!, // want to look into a better way to do this at some point 
+        getCoreRowModel: getCoreRowModel()
+    })
 
     return ( 
         !isLoadingStandings ? (
@@ -43,14 +40,25 @@ export default function Standings() {
                     })}
                 </thead>
                 <tbody>
-                    
+                    {table.getRowModel().rows.map(row => 
+                        <tr key={row.id}>
+                            {row.getVisibleCells().map(cell => 
+                                <td key={cell.id}>
+                                    {flexRender(
+                                        cell.column.columnDef.cell,
+                                        cell.getContext()
+                                    )}
+                                </td>
+                            )}
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>
 
         ) : (
             <div>
-                <h1>Loading the current NHL Standings</h1>
+                <h1>Loading the current NHL Standings ...</h1>
             </div>
         )
     )

@@ -1,3 +1,5 @@
+import { RowData } from '@tanstack/react-table'
+
 export type TeamStandings = { 
     teamName: string, 
     gamesPlayed: number,
@@ -86,4 +88,10 @@ export type TeamStandings = {
     winPctg: number,
     wins: number
 }
-// },
+
+
+declare module '@tanstack/table-core' {
+ interface ColumnMeta<TData extends RowData, TValue> {
+    align: 'left' | 'center' | 'right'
+  }
+}

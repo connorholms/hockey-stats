@@ -1,3 +1,4 @@
+import './Standings.css'
 import { getStandings } from "../api/standings";
 import { columns } from "./standings-columns";
 import { useQuery } from "@tanstack/react-query";
@@ -22,8 +23,8 @@ export default function Standings() {
 
     return ( 
         !isLoadingStandings ? (
-        <div>
-            <table>
+        <div className="standings-container">
+            <table className="standings-table">
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => {
                         return ( 
@@ -43,7 +44,7 @@ export default function Standings() {
                     {table.getRowModel().rows.map(row => 
                         <tr key={row.id}>
                             {row.getVisibleCells().map(cell => 
-                                <td key={cell.id}>
+                                <td key={cell.id} align={cell.column.columnDef?.meta?.align}>
                                     {flexRender(
                                         cell.column.columnDef.cell,
                                         cell.getContext()

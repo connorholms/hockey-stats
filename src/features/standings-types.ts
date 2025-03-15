@@ -1,7 +1,12 @@
 import { RowData } from '@tanstack/react-table'
 
+export type StandingsTeamName = {
+    default: string, 
+    fr: string
+}
+
 export type TeamStandings = { 
-    teamName: string, 
+    teamName: StandingsTeamName, 
     gamesPlayed: number,
     conferenceAbbrev: string,
     conferenceHomeSequence: number,

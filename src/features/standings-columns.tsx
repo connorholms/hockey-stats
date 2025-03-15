@@ -1,20 +1,34 @@
-import {  TeamStandings } from "./standings-types";
+import { JSX } from "react";
+import {  TeamStandings, StandingsTeamName } from "./standings-types";
 
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
+
+type TeamNameRow = { 
+    logoUrl: string, 
+    teamName: StandingsTeamName
+}
 
 const columnHelper = createColumnHelper<TeamStandings>()
 
 export const columns: ColumnDef<TeamStandings>[] = [
-    columnHelper.accessor('teamName', { 
+    {
+        accessorFn: (row): TeamNameRow => { 
+            return { 
+                logoUrl: row.teamLogo, 
+                teamName: row.teamName
+            }
+        },
         header: "Team", 
-        cell: data => { 
-            const teamObject = data.getValue()
-
-            //fix?
-            //@ts-ignore 
-            return teamObject?.default
+        cell: (cell) => {
+            const teamValues: any = cell.getValue()
+            return (
+                <div className="standings-team-name"><img src={teamValues.logoUrl}/> 
+                    <span className="standings-team-name-text">{teamValues.teamName.default}</span>
+                </div>
+            )
         }
-    }), 
+    },
+
     columnHelper.accessor('gamesPlayed', { 
         header: "GP", 
         cell: data => data.renderValue(),

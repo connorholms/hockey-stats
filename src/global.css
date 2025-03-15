@@ -1,4 +1,12 @@
+/* CSS Color classes */
+:root{ 
+  --primary: #4D5628;
+  --secondary: #850C0C;
+  --tertiary: #DCCCA3;
+}
+
 body { 
+  font-family: 'Inter', sans-serif;
   margin: 0;
 }
 

@@ -9,12 +9,17 @@ import { TeamStandings } from "./standings-types";
 
 
 export default function Standings() { 
-    const { isLoading: isLoadingStandings, data: standings }= useQuery<TeamStandings[]>({
+    const { isLoading: isLoadingStandings, data: standings, error: error }= useQuery<TeamStandings[]>({
         queryKey: ['standings'], 
         queryFn: () => getStandings(), 
-        //staleTime: 3600000 // one hour in milliseconds
+        // UX felt ok so not caching for now, might try to add more logic at some point to cache during the day/not game time
+        //staleTime: 3600000 
     })
 
+    if (error) { 
+        return "An error has occured"
+    }
+    
     const table = useReactTable<TeamStandings>({ 
         columns, 
         data: standings!, // want to look into a better way to do this at some point 

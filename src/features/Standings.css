@@ -1,3 +1,13 @@
 .standings-table { 
     border: 3px solid black;
 }
+
+.standings-team-name { 
+    display: flex;
+    align-items: center;
+    img { 
+        height: 30px;
+        width: 30px;
+    }
+
+}

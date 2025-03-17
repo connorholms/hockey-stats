@@ -2,6 +2,7 @@
     background-color: black;
     height: 60px;
     min-width: 600px;
+    display: flex;
 }
 
 .logo { 
@@ -16,5 +17,18 @@
 }
 .header-left {
     display: flex;
+    align-items: center;
+}
+
+.nav-item { 
+    color: white; 
+    text-decoration: none;
+    text-align: center;
+}
+
+.nav-list { 
+    display: flex;
+    margin-block: 0px;
+    height: 60px;
     align-items: center;
 }

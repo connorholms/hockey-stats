@@ -4,6 +4,7 @@ TODO:
 
 - UI
   - waiting to build out more components before organizing
+  - establish color scheme, fonts, header design etc
 - Standings:
   - more table info or separate widget for standings sidebar and page?
   - sorting?

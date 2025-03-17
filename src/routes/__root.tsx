@@ -4,16 +4,18 @@ import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import Header from '../components/Header'
 
 export const Route = createRootRoute({
-  component: () => {
-    return (
+  component: () => (
     <>
     <div>
       <Header />
-      <div className="container">
+      <div className="app-container">
         <Outlet />
       </div>
     </div>
     <TanStackRouterDevtools />
     </>
-)}
+), 
+notFoundComponent: () => { 
+  <div>404 not found</div>
+}
 })

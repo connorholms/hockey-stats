@@ -1,13 +1,23 @@
 import "./Header.css";
+import { Link } from "@tanstack/react-router";
 
 export default function Header() {
   return (
     <>
       <header className="header">
         <div className="header-left">
-          <img className="logo" src="src/assets/hs-logo.png" alt="Logo" />
+          <Link to="/">
+            <img className="logo" src="src/assets/hs-logo.png" alt="Logo" />
+          </Link>
           <span className="title">Let's Do That Hockey</span>
         </div>
+        <nav className="header-nav">
+          <ul className="nav-list">
+            <Link className="nav-item" to="/teams">
+              Teams
+            </Link>
+          </ul>
+        </nav>
       </header>
     </>
   );

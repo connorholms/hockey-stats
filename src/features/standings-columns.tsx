@@ -22,7 +22,7 @@ export const columns: ColumnDef<TeamStandings>[] = [
         cell: (cell) => {
             const teamValues: any = cell.getValue()
             return (
-                <div className="standings-team-name"><img src={teamValues.logoUrl}/> 
+                <div className="standings-team-name"><img src={teamValues.logoUrl} alt="team logo"/> 
                     <span className="standings-team-name-text">{teamValues.teamName.default}</span>
                 </div>
             )

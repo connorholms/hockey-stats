@@ -1,5 +1,5 @@
 import './Standings.css'
-import { getStandings } from "../api/standings";
+import { getStandings } from "../../api/standings";
 import { columns } from "./standings-columns";
 import { useQuery } from "@tanstack/react-query";
 import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
@@ -22,7 +22,7 @@ export default function Standings() {
     
     const table = useReactTable<TeamStandings>({ 
         columns, 
-        data: standings!, // want to look into a better way to do this at some point 
+        data: standings!, // want to look into a better way to do this at some point to avoid non-null assertion
         getCoreRowModel: getCoreRowModel()
     })
 

@@ -13,3 +13,6 @@ TODO:
   - start with roster info from api
 - Player view
   - database or direct api access?
+- Database:
+  - add team table with logos and basic information grabbed from the different endpoints
+    - (or multiple tables and join where needed)

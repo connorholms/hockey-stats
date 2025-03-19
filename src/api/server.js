@@ -8,10 +8,19 @@ const server = Fastify({
 
 server.get("/api/standings", async function getStandings(request, reply) {
   try {
-    const response = await fetch(
-      "https://api-web.nhle.com/v1/standings/now",
-      {}
-    );
+    const response = await fetch("https://api-web.nhle.com/v1/standings/now");
+    const json = await response.json();
+    reply.code(200).send(json);
+  } catch (err) {
+    reply
+      .status(500)
+      .send({ error: "Internal Server Error", message: err.message });
+  }
+});
+
+server.get("/api/active-teams", async function getActiveTeams(request, reply) {
+  try {
+    const response = await fetch("https://api.nhle.com/stats/rest/en/team");
     const json = await response.json();
     reply.code(200).send(json);
   } catch (err) {

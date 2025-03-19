@@ -1,4 +1,4 @@
-import { TeamStandings } from "../features/standings-types"
+import { TeamStandings } from "../features/standings/standings-types"
 
 export async function getStandings() { 
     const response = await fetch("api/standings")

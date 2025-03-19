@@ -11,6 +11,12 @@ body {
 }
 
 .app-container { 
-  width: min(129.6rem, 100%);
-  margin: 20px;
+  display: block;
+  background-color: lightgreen;
+}
+
+.app-content{ 
+  max-width: 1200px;
+  background-color: aliceblue;
+  margin: auto;
 }

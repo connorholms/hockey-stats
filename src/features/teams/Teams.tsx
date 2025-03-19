@@ -10,6 +10,10 @@ export default function Teams() {
         queryFn: () => getActiveTeams(), 
     })
 
+    if(!isSuccess) { 
+        return <p>Error Getting Team Data</p>
+    }
+
     if(isLoadingTeams) { 
         return <p>Loading active NHL Teams....</p>
     }
@@ -18,7 +22,7 @@ export default function Teams() {
     <>
         <h1>Active NHL teams</h1>
         <div className="teams-list">
-            {activeTeams?.map(team => { 
+            {activeTeams.map(team => { 
                 return <div>{team.fullName}</div>
             })}
         </div>

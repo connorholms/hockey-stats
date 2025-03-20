@@ -10,7 +10,10 @@ TODO:
   - sorting?
   - division/conference/wildcard views
 - Team view
-  - start with roster info from api
+  - link to rosters
+- Roster
+  - UI (images, table etc)
+  - Team info in route (team name etc)
 - Player view
   - database or direct api access?
 - Database:

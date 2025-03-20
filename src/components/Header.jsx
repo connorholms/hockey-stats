@@ -12,11 +12,11 @@ export default function Header() {
           <span className="title">Let's Do That Hockey</span>
         </div>
         <nav className="header-nav">
-          <ul className="nav-list">
+          <span className="nav-list">
             <Link className="nav-item" to="/teams">
               Teams
             </Link>
-          </ul>
+          </span>
         </nav>
       </header>
     </>

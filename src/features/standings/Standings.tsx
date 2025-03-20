@@ -9,20 +9,16 @@ import { TeamStandings } from "./standings-types";
 
 
 export default function Standings() { 
-    const { isLoading: isLoadingStandings, data: standings, isSuccess }= useQuery<TeamStandings[]>({
+    const { isLoading: isLoadingStandings, data: standings }= useQuery<TeamStandings[]>({
         queryKey: ['standings'], 
         queryFn: () => getStandings(), 
         // UX felt ok so not caching for now, might try to add more logic at some point to cache during the day/not game time
         //staleTime: 3600000 
     })
-
-    if(!isSuccess) { 
-        return <p>Error Getting Standings Data</p>
-    }
     
     const table = useReactTable<TeamStandings>({ 
         columns, 
-        data: standings,
+        data: standings!, // look into a better solution for this rather than non-null assertion
         getCoreRowModel: getCoreRowModel()
     })
 

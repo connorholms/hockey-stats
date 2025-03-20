@@ -11,20 +11,27 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as TeamsImport } from './routes/teams'
 import { Route as IndexImport } from './routes/index'
+import { Route as TeamsIndexImport } from './routes/teams/index'
+import { Route as TeamsTeamSeasonImport } from './routes/teams/$team.$season'
 
 // Create/Update Routes
-
-const TeamsRoute = TeamsImport.update({
-  id: '/teams',
-  path: '/teams',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TeamsIndexRoute = TeamsIndexImport.update({
+  id: '/teams/',
+  path: '/teams/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TeamsTeamSeasonRoute = TeamsTeamSeasonImport.update({
+  id: '/teams/$team/$season',
+  path: '/teams/$team/$season',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +46,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/teams': {
-      id: '/teams'
+    '/teams/': {
+      id: '/teams/'
       path: '/teams'
       fullPath: '/teams'
-      preLoaderRoute: typeof TeamsImport
+      preLoaderRoute: typeof TeamsIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/teams/$team/$season': {
+      id: '/teams/$team/$season'
+      path: '/teams/$team/$season'
+      fullPath: '/teams/$team/$season'
+      preLoaderRoute: typeof TeamsTeamSeasonImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/teams': typeof TeamsRoute
+  '/teams': typeof TeamsIndexRoute
+  '/teams/$team/$season': typeof TeamsTeamSeasonRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/teams': typeof TeamsRoute
+  '/teams': typeof TeamsIndexRoute
+  '/teams/$team/$season': typeof TeamsTeamSeasonRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/teams': typeof TeamsRoute
+  '/teams/': typeof TeamsIndexRoute
+  '/teams/$team/$season': typeof TeamsTeamSeasonRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/teams'
+  fullPaths: '/' | '/teams' | '/teams/$team/$season'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/teams'
-  id: '__root__' | '/' | '/teams'
+  to: '/' | '/teams' | '/teams/$team/$season'
+  id: '__root__' | '/' | '/teams/' | '/teams/$team/$season'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TeamsRoute: typeof TeamsRoute
+  TeamsIndexRoute: typeof TeamsIndexRoute
+  TeamsTeamSeasonRoute: typeof TeamsTeamSeasonRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TeamsRoute: TeamsRoute,
+  TeamsIndexRoute: TeamsIndexRoute,
+  TeamsTeamSeasonRoute: TeamsTeamSeasonRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +116,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/teams"
+        "/teams/",
+        "/teams/$team/$season"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/teams": {
-      "filePath": "teams.tsx"
+    "/teams/": {
+      "filePath": "teams/index.tsx"
+    },
+    "/teams/$team/$season": {
+      "filePath": "teams/$team.$season.tsx"
     }
   }
 }

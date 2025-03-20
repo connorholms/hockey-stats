@@ -3,6 +3,7 @@ import { isActiveTeam } from "../types/active-teams";
 
 export async function getActiveTeams() {
   const response = await fetch("api/active-teams");
+  console.log(response)
   const json = await response.json()
   const allTeams: TeamResponse[] = json.data
   const activeTeams = allTeams.filter(teamData => { 

@@ -11,7 +11,7 @@ export default function Teams() {
         queryFn: () => getActiveTeams(), 
     })
 
-    if(!isSuccess) { 
+    if(!isSuccess || error) { 
         return <p>Error Getting Team Data</p>
     }
 

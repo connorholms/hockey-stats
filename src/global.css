@@ -20,3 +20,9 @@ body {
   background-color: aliceblue;
   margin: auto;
 }
+
+
+/* placeholder until I format UI of page headers */
+h1 {
+  margin-block-start: 0px;
+}

@@ -13,6 +13,8 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as TeamsIndexImport } from './routes/teams/index'
+import { Route as PlayersIndexImport } from './routes/players/index'
+import { Route as PlayersPlayerIdImport } from './routes/players/$playerId'
 import { Route as TeamsTeamSeasonImport } from './routes/teams/$team.$season'
 
 // Create/Update Routes
@@ -26,6 +28,18 @@ const IndexRoute = IndexImport.update({
 const TeamsIndexRoute = TeamsIndexImport.update({
   id: '/teams/',
   path: '/teams/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PlayersIndexRoute = PlayersIndexImport.update({
+  id: '/players/',
+  path: '/players/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PlayersPlayerIdRoute = PlayersPlayerIdImport.update({
+  id: '/players/$playerId',
+  path: '/players/$playerId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -44,6 +58,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/players/$playerId': {
+      id: '/players/$playerId'
+      path: '/players/$playerId'
+      fullPath: '/players/$playerId'
+      preLoaderRoute: typeof PlayersPlayerIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/players/': {
+      id: '/players/'
+      path: '/players'
+      fullPath: '/players'
+      preLoaderRoute: typeof PlayersIndexImport
       parentRoute: typeof rootRoute
     }
     '/teams/': {
@@ -67,12 +95,16 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/players/$playerId': typeof PlayersPlayerIdRoute
+  '/players': typeof PlayersIndexRoute
   '/teams': typeof TeamsIndexRoute
   '/teams/$team/$season': typeof TeamsTeamSeasonRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/players/$playerId': typeof PlayersPlayerIdRoute
+  '/players': typeof PlayersIndexRoute
   '/teams': typeof TeamsIndexRoute
   '/teams/$team/$season': typeof TeamsTeamSeasonRoute
 }
@@ -80,27 +112,49 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/players/$playerId': typeof PlayersPlayerIdRoute
+  '/players/': typeof PlayersIndexRoute
   '/teams/': typeof TeamsIndexRoute
   '/teams/$team/$season': typeof TeamsTeamSeasonRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/teams' | '/teams/$team/$season'
+  fullPaths:
+    | '/'
+    | '/players/$playerId'
+    | '/players'
+    | '/teams'
+    | '/teams/$team/$season'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/teams' | '/teams/$team/$season'
-  id: '__root__' | '/' | '/teams/' | '/teams/$team/$season'
+  to:
+    | '/'
+    | '/players/$playerId'
+    | '/players'
+    | '/teams'
+    | '/teams/$team/$season'
+  id:
+    | '__root__'
+    | '/'
+    | '/players/$playerId'
+    | '/players/'
+    | '/teams/'
+    | '/teams/$team/$season'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PlayersPlayerIdRoute: typeof PlayersPlayerIdRoute
+  PlayersIndexRoute: typeof PlayersIndexRoute
   TeamsIndexRoute: typeof TeamsIndexRoute
   TeamsTeamSeasonRoute: typeof TeamsTeamSeasonRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PlayersPlayerIdRoute: PlayersPlayerIdRoute,
+  PlayersIndexRoute: PlayersIndexRoute,
   TeamsIndexRoute: TeamsIndexRoute,
   TeamsTeamSeasonRoute: TeamsTeamSeasonRoute,
 }
@@ -116,12 +170,20 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/players/$playerId",
+        "/players/",
         "/teams/",
         "/teams/$team/$season"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/players/$playerId": {
+      "filePath": "players/$playerId.tsx"
+    },
+    "/players/": {
+      "filePath": "players/index.tsx"
     },
     "/teams/": {
       "filePath": "teams/index.tsx"

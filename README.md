@@ -10,12 +10,18 @@ TODO:
   - sorting?
   - division/conference/wildcard views
 - Team view
-  - link to rosters
+  - UI
+  - Divisions?
+  - _once DB is ready_: Formatting (ex: save logos on DB and load with teams?)
 - Roster
   - UI (images, table etc)
   - Team info in route (team name etc)
-- Player view
-  - database or direct api access?
+  - clean up typing and check for logs/cleanup etc.
+  - specify component in create file route and use loader data directly in Roster.tsx
+- Player info
+  - future database integration? (might not be best for live stats)
+  - format table to include stats
+  - check typings and do a review of existing code
 - Database:
   - add team table with logos and basic information grabbed from the different endpoints
     - (or multiple tables and join where needed)

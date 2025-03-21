@@ -16,6 +16,9 @@ export default function Header() {
             <Link className="nav-item" to="/teams">
               Teams
             </Link>
+            <Link className="nav-item" to="/players">
+              Players
+            </Link>
           </span>
         </nav>
       </header>

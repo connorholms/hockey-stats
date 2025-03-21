@@ -34,13 +34,11 @@ server.get(
   "/api/roster/:team/:season",
   async function getRoster(request, reply) {
     const { team, season } = request.params;
-    console.log("team, season", team, season);
     try {
       const response = await fetch(
         `https://api-web.nhle.com/v1/roster/${team}/${season}`,
       );
       const json = await response.json();
-      console.log(json);
       reply.code(200).send(json);
     } catch (err) {
       reply
@@ -49,6 +47,21 @@ server.get(
     }
   },
 );
+
+server.get("/api/player/:playerId", async function getPlayer(request, reply) {
+  const { playerId } = request.params;
+  try {
+    const response = await fetch(
+      `https://api-web.nhle.com/v1/player/${playerId}/landing`,
+    );
+    const json = await response.json();
+    reply.code(200).send(json);
+  } catch (err) {
+    reply
+      .status(500)
+      .send({ error: "Internal Server Error", message: err.message });
+  }
+});
 
 const start = async () => {
   try {

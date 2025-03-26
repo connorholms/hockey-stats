@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPlayerInfo } from "../../api/player";
-import { Route } from "../../routes/players/$playerId";
+import { getPlayerInfo } from "../../../api/player";
+import { Route } from "../../../routes/players/$playerId";
+import PlayerHeader from "./Player-bio"
+import PlayerStats from "./Player-stats"
 
 export default function Player() { 
     const { playerId }: { playerId: string } = Route.useLoaderData()
@@ -14,10 +16,11 @@ export default function Player() {
         return <div>Loading Player Data...</div>
     }
 
-    return ( 
-        <div>
-            <div>{playerData.firstName.default} {playerData.lastName.default}</div>
-            <img src={playerData.headshot} alt="Player Headshot" />
-        </div>
+    return (
+        <>
+            <PlayerHeader playerInfo={playerData} />
+            <PlayerStats  />
+        </>
     )
+
 }

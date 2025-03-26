@@ -1,0 +1,50 @@
+export type PlayerResponse = {
+    badges: Array<Record<string, unknown>>;
+    birthCity: { default: string };
+    birthCountry: string;
+    birthDate: string;
+    birthStateProvince: { default: string };
+    careerTotals: {
+        regularSeason: Record<string, unknown>;
+        playoffs: Record<string, unknown>;
+    };
+    currentTeamAbbrev: string;
+    currentTeamId: number;
+    currentTeamRoster: Array<Record<string, unknown>>;
+    draftDetails: {
+        year: number;
+        teamAbbrev: string;
+        round: number;
+        pickInRound: number;
+        overallPick: number;
+    };
+    featuredStats: {
+        season: number;
+        regularSeason: Record<string, unknown>;
+    };
+    firstName: { default: string };
+    fullTeamName: { default: string; fr: string };
+    headshot: string;
+    heightInCentimeters: number;
+    heightInInches: number;
+    heroImage: string;
+    inHHOF: number;
+    inTop100AllTime: number;
+    isActive: boolean;
+    last5Games: Array<Record<string, unknown>>;
+    lastName: { default: string };
+    playerId: number;
+    playerSlug: string;
+    position: string;
+    seasonTotals: Array<Record<string, unknown>>;
+    shootsCatches: string;
+    shopLink: string;
+    sweaterNumber: number;
+    teamCommonName: { default: string };
+    teamLogo: string;
+    teamPlaceNameWithPreposition: { default: string; fr: string };
+    twitterLink: string;
+    watchLink: string;
+    weightInKilograms: number;
+    weightInPounds: number;
+};

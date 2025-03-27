@@ -5,7 +5,7 @@ export const Route = createFileRoute('/teams/$team/$season')({
   loader: ({ params: { team, season } }) => {
     return {team, season}
   },
-  component: RouteComponent,
+  component: Roster,
 })
 
 function RouteComponent() {

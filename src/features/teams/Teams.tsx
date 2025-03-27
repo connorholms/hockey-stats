@@ -26,7 +26,7 @@ export default function Teams() {
             {activeTeams
                 .map(team => { 
                     return (
-                        <div>
+                        <div key={team.id}>
                             <Link to={`${team.triCode}/current`}>{team.fullName}</Link>
                         </div>
                     )

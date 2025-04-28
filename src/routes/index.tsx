@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Standings from "../features/standings/Standings";
+import Standings from "../features/standings-sidebar/Standings-sidebar";
 
 export const Route = createFileRoute("/")({
   component: Index,

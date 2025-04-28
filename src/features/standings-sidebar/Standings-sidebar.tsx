@@ -1,9 +1,9 @@
-import './Standings.css'
+import './Standings-sidebar.css'
 import { getStandings } from "../../api/standings";
-import { columns } from "./standings-columns";
+import { columns } from "../../types/standings/standings-columns";
 import { useQuery } from "@tanstack/react-query";
 import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import { TeamStandings } from "./standings-types";
+import { TeamStandings } from "../../types/standings/standings-types";
 
 
 

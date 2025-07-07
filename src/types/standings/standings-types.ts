@@ -100,14 +100,14 @@ declare module "@tanstack/table-core" {
   }
 }
 
-export interface ConfereceTeamsStandings {
-  easternConference: TeamStandings[];
-  westernConference: TeamStandings[];
+export interface ConferenceTeamsStandings {
+  eastern: TeamStandings[];
+  western: TeamStandings[];
 }
 
 export interface DivisionTeamsStandings {
-  atlanticDivision: TeamStandings[];
-  centralDivision: TeamStandings[];
-  metropolitanDivision: TeamStandings[];
-  pacificDivision: TeamStandings[];
+  atlantic: TeamStandings[];
+  central: TeamStandings[];
+  metropolitan: TeamStandings[];
+  pacific: TeamStandings[];
 }

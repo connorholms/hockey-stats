@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 
 export default function Header() {
   return (
-    <>
+    <div>
       <header className="header">
         <div className="header-left">
           <Link to="/">
@@ -19,9 +19,12 @@ export default function Header() {
             <Link className="nav-item" to="/players">
               Players
             </Link>
+            <Link className="nav-item" to="/standings">
+              Standings
+            </Link>
           </span>
         </nav>
       </header>
-    </>
+    </div>
   );
 }

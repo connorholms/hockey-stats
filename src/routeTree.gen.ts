@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as TeamsIndexImport } from './routes/teams/index'
+import { Route as StandingsIndexImport } from './routes/standings/index'
 import { Route as PlayersIndexImport } from './routes/players/index'
 import { Route as PlayersPlayerIdImport } from './routes/players/$playerId'
 import { Route as TeamsTeamSeasonImport } from './routes/teams/$team.$season'
@@ -28,6 +29,12 @@ const IndexRoute = IndexImport.update({
 const TeamsIndexRoute = TeamsIndexImport.update({
   id: '/teams/',
   path: '/teams/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const StandingsIndexRoute = StandingsIndexImport.update({
+  id: '/standings/',
+  path: '/standings/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,6 +81,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayersIndexImport
       parentRoute: typeof rootRoute
     }
+    '/standings/': {
+      id: '/standings/'
+      path: '/standings'
+      fullPath: '/standings'
+      preLoaderRoute: typeof StandingsIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/teams/': {
       id: '/teams/'
       path: '/teams'
@@ -97,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/players/$playerId': typeof PlayersPlayerIdRoute
   '/players': typeof PlayersIndexRoute
+  '/standings': typeof StandingsIndexRoute
   '/teams': typeof TeamsIndexRoute
   '/teams/$team/$season': typeof TeamsTeamSeasonRoute
 }
@@ -105,6 +120,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/players/$playerId': typeof PlayersPlayerIdRoute
   '/players': typeof PlayersIndexRoute
+  '/standings': typeof StandingsIndexRoute
   '/teams': typeof TeamsIndexRoute
   '/teams/$team/$season': typeof TeamsTeamSeasonRoute
 }
@@ -114,6 +130,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/players/$playerId': typeof PlayersPlayerIdRoute
   '/players/': typeof PlayersIndexRoute
+  '/standings/': typeof StandingsIndexRoute
   '/teams/': typeof TeamsIndexRoute
   '/teams/$team/$season': typeof TeamsTeamSeasonRoute
 }
@@ -124,6 +141,7 @@ export interface FileRouteTypes {
     | '/'
     | '/players/$playerId'
     | '/players'
+    | '/standings'
     | '/teams'
     | '/teams/$team/$season'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/players/$playerId'
     | '/players'
+    | '/standings'
     | '/teams'
     | '/teams/$team/$season'
   id:
@@ -138,6 +157,7 @@ export interface FileRouteTypes {
     | '/'
     | '/players/$playerId'
     | '/players/'
+    | '/standings/'
     | '/teams/'
     | '/teams/$team/$season'
   fileRoutesById: FileRoutesById
@@ -147,6 +167,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PlayersPlayerIdRoute: typeof PlayersPlayerIdRoute
   PlayersIndexRoute: typeof PlayersIndexRoute
+  StandingsIndexRoute: typeof StandingsIndexRoute
   TeamsIndexRoute: typeof TeamsIndexRoute
   TeamsTeamSeasonRoute: typeof TeamsTeamSeasonRoute
 }
@@ -155,6 +176,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PlayersPlayerIdRoute: PlayersPlayerIdRoute,
   PlayersIndexRoute: PlayersIndexRoute,
+  StandingsIndexRoute: StandingsIndexRoute,
   TeamsIndexRoute: TeamsIndexRoute,
   TeamsTeamSeasonRoute: TeamsTeamSeasonRoute,
 }
@@ -172,6 +194,7 @@ export const routeTree = rootRoute
         "/",
         "/players/$playerId",
         "/players/",
+        "/standings/",
         "/teams/",
         "/teams/$team/$season"
       ]
@@ -184,6 +207,9 @@ export const routeTree = rootRoute
     },
     "/players/": {
       "filePath": "players/index.tsx"
+    },
+    "/standings/": {
+      "filePath": "standings/index.tsx"
     },
     "/teams/": {
       "filePath": "teams/index.tsx"

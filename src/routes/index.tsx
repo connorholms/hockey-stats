@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Standings from "../features/standings-sidebar/Standings-sidebar";
+import StandingsSidebar from "../features/standings-sidebar/Standings-sidebar";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -10,7 +10,7 @@ function Index() {
     <>
       <div className="container">
         <h1>NHL Stats Site</h1>
-        <Standings />
+        <StandingsSidebar />
       </div>
     </>
   );

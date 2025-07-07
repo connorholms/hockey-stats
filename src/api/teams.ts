@@ -1,18 +1,20 @@
-import { TeamResponse } from "../features/teams/team-types";
-import { isActiveTeam } from "../types/active-teams";
+import { isActiveTeam } from "../types/teams/active-teams";
+import { Team, TeamSortOptions } from "../types/teams/teams-list";
 
-export async function getActiveTeams() {
+export async function getActiveTeams(sortBy: TeamSortOptions = "league") {
   const response = await fetch("api/active-teams");
-  const json = await response.json()
-  const allTeams: TeamResponse[] = json.data
-  const activeTeams = allTeams.filter(teamData => { 
-    return isActiveTeam(teamData.fullName)
-  })
+  const json = await response.json();
+  const allTeams: Team[] = json.data;
+  const activeTeams = allTeams.filter((teamData) => {
+    return isActiveTeam(teamData.fullName);
+  });
+  return sortTeamsAlphabetical(activeTeams);
+}
 
-
-  const sortedActiveTeams = activeTeams.sort((a, b) => { 
-    const teamA = a["fullName"]
-    const teamB = b["fullName"]
+function sortTeamsAlphabetical(teams: Team[]) {
+  const sortedActiveTeams = teams.sort((a, b) => {
+    const teamA = a["fullName"];
+    const teamB = b["fullName"];
     if (teamA < teamB) {
       return -1;
     }
@@ -20,8 +22,6 @@ export async function getActiveTeams() {
       return 1;
     }
     return 0;
-  })
-  return sortedActiveTeams
+  });
+  return sortedActiveTeams;
 }
-
-getActiveTeams();

@@ -1,32 +1,31 @@
 import { StrictMode } from "react";
-import "./App.css";
 import { createRoot } from "react-dom/client";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const router = createRouter({ routeTree });
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 function App() {
-  if(router) {
+  if (router) {
     return (
       <>
         <StrictMode>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-        </QueryClientProvider>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+          </QueryClientProvider>
         </StrictMode>
       </>
     );
   }
 }
 
-const rootElement = document.getElementById("root")
+const rootElement = document.getElementById("root");
 
 if (rootElement) {
   const root = createRoot(rootElement);
   root.render(<App />);
 } else {
-  console.error("Root element not found in the DOM!")
+  console.error("Root element not found in the DOM!");
 }

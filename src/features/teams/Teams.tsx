@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { getActiveTeams } from "../../api/teams";
-import { TeamResponse } from "./team-types";
 import { Link } from "@tanstack/react-router";
+import { Team } from "../../types/teams/teams-list";
 
 export default function Teams() {
   const {
     isLoading: isLoadingTeams,
     data: activeTeams,
     error: error,
-  } = useQuery<TeamResponse[]>({
+  } = useQuery<Team[]>({
     queryKey: ["teams"],
     queryFn: () => getActiveTeams(),
   });

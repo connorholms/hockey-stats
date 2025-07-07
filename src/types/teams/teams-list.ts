@@ -1,11 +1,11 @@
 export type TeamSortOptions = "league" | "conference" | "division";
 
-export interface ConfereceTeams {
+export interface ConferenceTeams {
   easternConference: Team[];
   westernConference: Team[];
 }
 
-export interface ConfereceTeams {
+export interface DivisionTeams {
   atlanticDivision: Team[];
   centralDivision: Team[];
   metropolitanDivision: Team[];

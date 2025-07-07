@@ -1,15 +1,13 @@
 // import "./Standings-sidebar.css";
+import { useState } from "react";
 import { getStandings } from "../../api/standings";
-import { columns } from "../../types/standings/standings-columns";
-import { useQuery } from "@tanstack/react-query";
-import {
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
 import { TeamStandings } from "../../types/standings/standings-types";
+import StandingsWidget from "./components/Standings-widget";
+
+import { useQuery } from "@tanstack/react-query";
 
 export default function Standings() {
+  const [displaySettings, setDisplaySettings] = useState("division");
   const { isLoading: isLoadingStandings, data: standings } = useQuery<
     TeamStandings[]
   >({
@@ -20,12 +18,6 @@ export default function Standings() {
     //staleTime: 3600000
   });
 
-  const table = useReactTable<TeamStandings>({
-    columns,
-    data: standings ?? [],
-    getCoreRowModel: getCoreRowModel(),
-  });
-
   if (isLoadingStandings) {
     return <h1>Loading the current NHL Standings ...</h1>;
   }
@@ -34,36 +26,21 @@ export default function Standings() {
   }
 
   return (
-    <div className="standings-container">
-      <table className="standings-table">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => {
-            return (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th key={header.id} colSpan={header.colSpan}>
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
-                  </th>
-                ))}
-              </tr>
-            );
-          })}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} align={cell.column.columnDef?.meta?.align}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div>
+      <h1>Standings</h1>
+
+      {displaySettings === "division" && (
+        <StandingsWidget standingsData={standings} />
+      )}
+      {displaySettings === "conference" && (
+        <StandingsWidget standingsData={standings} />
+      )}
+      {displaySettings === "league" && (
+        <StandingsWidget standingsData={standings} />
+      )}
+      {displaySettings === "wildcard" && (
+        <StandingsWidget standingsData={standings} />
+      )}
     </div>
   );
 }

@@ -1,13 +1,14 @@
-// import "./Standings-sidebar.css";
 import { useState } from "react";
 import { getStandings } from "../../api/standings";
 import { TeamStandings } from "../../types/standings/standings-types";
 import StandingsWidget from "./components/Standings-widget";
+import { buttonOptions } from "./types/standings";
+import ToggleButton from "../../components/ui/Toggle-button";
 
 import { useQuery } from "@tanstack/react-query";
 
 export default function Standings() {
-  const [displaySettings, setDisplaySettings] = useState("division");
+  const [displaySettings, setDisplaySettings] = useState(buttonOptions[0].name);
   const { isLoading: isLoadingStandings, data: standings } = useQuery<
     TeamStandings[]
   >({
@@ -25,9 +26,15 @@ export default function Standings() {
     return <h1>Error getting standings</h1>;
   }
 
+  console.log("buttonState, ", displaySettings);
+
   return (
     <div>
       <h1>Standings</h1>
+      <ToggleButton
+        buttonOptions={buttonOptions}
+        setButtonState={setDisplaySettings}
+      />
 
       {displaySettings === "division" && (
         <StandingsWidget standingsData={standings} />

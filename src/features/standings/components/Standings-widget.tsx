@@ -8,7 +8,11 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-export default function StandingsWidget({ standingsData }) {
+export default function StandingsWidget({
+  standingsData,
+}: {
+  standingsData: TeamStandings[];
+}) {
   const table = useReactTable<TeamStandings>({
     columns,
     data: standingsData ?? [],

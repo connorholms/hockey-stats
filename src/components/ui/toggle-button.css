@@ -1,0 +1,14 @@
+.selected {
+    background-color: var(--button-grey-selected)
+}
+
+/* .unselected{
+    background-color: var(--app);
+} */
+
+.button {
+    color: var(--background);
+    width: 120px;
+    height: 30px;
+}
+

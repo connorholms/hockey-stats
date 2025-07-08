@@ -1,0 +1,9 @@
+.standings-team-name { 
+    display: flex;
+    align-items: center;
+    img { 
+        height: 30px;
+        width: 30px;
+    }
+
+}

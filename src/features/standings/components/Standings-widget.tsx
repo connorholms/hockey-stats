@@ -1,5 +1,6 @@
 import { TeamStandings } from "../../../types/standings/standings-types";
 import { columns } from "../util/standings-columns";
+import "./standings-widget.css";
 
 import {
   flexRender,

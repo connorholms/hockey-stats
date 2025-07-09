@@ -4,6 +4,7 @@ import { TeamStandings } from "../../types/standings/standings-types";
 import StandingsWidget from "./components/Standings-widget";
 import { buttonOptions } from "./types/standings";
 import ToggleButton from "../../components/ui/Toggle-button";
+import "./standings.css";
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -35,6 +36,8 @@ export default function Standings() {
         buttonOptions={buttonOptions}
         setButtonState={setDisplaySettings}
       />
+
+      <hr />
 
       {displaySettings === "division" && (
         <StandingsWidget standingsData={standings} />

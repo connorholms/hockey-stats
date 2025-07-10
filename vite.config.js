@@ -17,4 +17,7 @@ export default defineConfig({
     TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
     react(),
   ],
+  test: {
+    globals: true,
+  },
 });

@@ -1,31 +1,44 @@
 import "./player.css";
-import { PlayerResponse } from "../types/player-types"
-import { inchesToFeetAndInches, draftRound, formatPickNumber} from "../../../util/format";
+import { PlayerResponse } from "../types/player-types";
+import {
+  inchesToFeetAndInches,
+  draftRound,
+  formatDraftInfo,
+} from "../../../util/player-format";
 
-const HasStateProvince  = ["USA", "CAN"]
+const HasStateProvince = ["USA", "CAN"];
 
 export default function PlayerHeader(playerData) {
   const playerInfo: PlayerResponse = playerData.playerInfo;
 
   let stickHand, hometown, draftInfo;
-  playerInfo.position === "G" ? stickHand = "Catches" : stickHand = "Shoots"
+  playerInfo.position === "G"
+    ? (stickHand = "Catches")
+    : (stickHand = "Shoots");
 
-  if (HasStateProvince.includes(playerInfo.birthCountry)) { 
-    hometown = `${playerInfo.birthCity.default}, ${playerInfo.birthStateProvince.default}, ${playerInfo.birthCountry}`
-  } else { 
-    hometown = `${playerInfo.birthCity.default}, ${playerInfo.birthCountry}`
+  if (HasStateProvince.includes(playerInfo.birthCountry)) {
+    hometown = `${playerInfo.birthCity.default}, ${playerInfo.birthStateProvince.default}, ${playerInfo.birthCountry}`;
+  } else {
+    hometown = `${playerInfo.birthCity.default}, ${playerInfo.birthCountry}`;
   }
 
   const playerHeight = inchesToFeetAndInches(playerInfo.heightInInches);
 
-  if (playerInfo?.draftDetails) { 
-    const pickNumberRound = playerInfo.draftDetails.pickInRound + formatPickNumber(playerInfo.draftDetails.pickInRound)
-    const pickNumberOverallNumber = playerInfo.draftDetails.overallPick + formatPickNumber(playerInfo.draftDetails.overallPick)
-    draftInfo = `${playerInfo.draftDetails.year}, ${playerInfo.draftDetails.teamAbbrev} ${draftRound[playerInfo.draftDetails.round]} Round, ${pickNumberRound} Pick (${pickNumberOverallNumber} Overall)`
-  } else { 
-    draftInfo = "Undrafted"
+  if (playerInfo?.draftDetails) {
+    const [round, pick] = formatDraftInfo(
+      playerInfo.draftDetails?.pickInRound,
+      playerInfo.draftDetails?.overallPick,
+    );
+    if (round && pick) {
+      draftInfo =
+        draftInfo = `${playerInfo.draftDetails.year}, ${playerInfo.draftDetails.teamAbbrev} ${draftRound[playerInfo.draftDetails.round]} Round, ${round} Pick (${pick} Overall)`;
+    } else {
+      draftInfo = "Error Retrieving Draft Info";
+      throw new Error("Error getting draft info");
+    }
+  } else {
+    draftInfo = "Undrafted";
   }
-
 
   return (
     <div className="player-bio">
@@ -40,8 +53,10 @@ export default function PlayerHeader(playerData) {
         <div>
           <div>Birth Date: {playerInfo.birthDate}</div>
           <div>Hometown: {hometown}</div>
-          <div>Position: {playerInfo.position}</div> 
-          <div>{stickHand}: {playerInfo.shootsCatches}</div> 
+          <div>Position: {playerInfo.position}</div>
+          <div>
+            {stickHand}: {playerInfo.shootsCatches}
+          </div>
           <div>
             Height: {playerHeight.feet}'{playerHeight.inches}"
           </div>

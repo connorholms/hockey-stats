@@ -1,26 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPlayerInfo } from "../../../api/player";
 import { Route } from "../../../routes/players/$playerId";
-import PlayerHeader from "./Player-bio"
-import PlayerStats from "./Player-stats"
+import PlayerHeader from "./Player-bio";
+import PlayerStats from "./Player-stats";
 
-export default function Player() { 
-    const { playerId }: { playerId: string } = Route.useLoaderData()
+export default function Player() {
+  const { playerId }: { playerId: string } = Route.useLoaderData();
 
-    const { isLoading: isLoadingPlayer, data: playerData }= useQuery<any>({
-        queryKey: ['playerInfo'], 
-        queryFn: () => getPlayerInfo(playerId), 
-    })
+  const { isLoading: isLoadingPlayer, data: playerData } = useQuery<any>({
+    queryKey: ["playerInfo", playerId],
+    queryFn: () => getPlayerInfo(playerId),
+  });
 
-    if(isLoadingPlayer) {
-        return <div>Loading Player Data...</div>
-    }
+  if (isLoadingPlayer) {
+    return <div>Loading Player Data...</div>;
+  }
 
-    return (
-        <>
-            <PlayerHeader playerInfo={playerData} />
-            <PlayerStats  />
-        </>
-    )
-
+  return (
+    <>
+      <PlayerHeader playerInfo={playerData} />
+      <PlayerStats />
+    </>
+  );
 }

@@ -50,16 +50,33 @@ export default function Standings() {
       <hr />
 
       {displaySettings === "division" && (
-        <StandingsWidget standingsData={standings} />
+        <div>
+          <StandingsWidget standingsData={sortedStandings["central"]} />
+          <StandingsWidget standingsData={sortedStandings["pacific"]} />
+          <StandingsWidget standingsData={sortedStandings["atlantic"]} />
+          <StandingsWidget standingsData={sortedStandings["metropolitan"]} />
+        </div>
       )}
       {displaySettings === "conference" && (
-        <StandingsWidget standingsData={standings} />
+        <div>
+          <StandingsWidget standingsData={sortedStandings["western"]} />
+          <StandingsWidget standingsData={sortedStandings["eastern"]} />
+        </div>
       )}
       {displaySettings === "league" && (
-        <StandingsWidget standingsData={standings} />
+        <div>
+          <StandingsWidget standingsData={standings} />
+        </div>
       )}
       {displaySettings === "wildcard" && (
-        <StandingsWidget standingsData={standings} />
+        <div>
+          <StandingsWidget standingsData={sortedStandings["central"]} />
+          <StandingsWidget standingsData={sortedStandings["pacific"]} />
+          <StandingsWidget standingsData={sortedStandings["western"]} />
+          <StandingsWidget standingsData={sortedStandings["atlantic"]} />
+          <StandingsWidget standingsData={sortedStandings["metropolitan"]} />
+          <StandingsWidget standingsData={sortedStandings["eastern"]} />
+        </div>
       )}
     </div>
   );

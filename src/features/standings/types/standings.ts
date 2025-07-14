@@ -1,3 +1,5 @@
+import { StandingsSortOptions } from "../../../types/standings/standings-types";
+
 // used to set the standings display settings
 export const buttonOptions: ButtonOption[] = [
   { name: "wildcard", id: 1 },
@@ -7,6 +9,6 @@ export const buttonOptions: ButtonOption[] = [
 ];
 
 export interface ButtonOption {
-  name: string;
+  name: StandingsSortOptions;
   id: number;
 }

@@ -8,7 +8,9 @@ TODO:
 - Standings:
   - more table info or separate widget for standings sidebar and page?
   - sorting?
+  - Division/conference/wildcard/league toggle styling
   - division/conference/wildcard views
+  - Write unit tests for standings sorting logic
 - Team view
   - UI
   - Divisions?

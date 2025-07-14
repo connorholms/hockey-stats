@@ -111,3 +111,15 @@ export interface DivisionTeamsStandings {
   metropolitan: TeamStandings[];
   pacific: TeamStandings[];
 }
+
+/*
+Format for wildcard standings is top 3 teams in each division, then the rest of the teams sorted by points in each conference
+*/
+export interface WildcardTeamsStandings {
+  atlantic: TeamStandings[];
+  central: TeamStandings[];
+  metropolitan: TeamStandings[];
+  pacific: TeamStandings[];
+  western: TeamStandings[];
+  eastern: TeamStandings[];
+}

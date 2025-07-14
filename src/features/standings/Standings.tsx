@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 import { getStandings } from "../../api/standings";
-import { TeamStandings } from "../../types/standings/standings-types";
+import {
+  StandingsSortOptions,
+  TeamStandings,
+} from "../../types/standings/standings-types";
 import StandingsWidget from "./components/Standings-widget";
 import { buttonOptions } from "./types/standings";
 import ToggleButton from "../../components/ui/Toggle-button";
 import "./standings.css";
-
-import { useQuery } from "@tanstack/react-query";
+import { sortTeams } from "../../util/team-sorting";
 
 export default function Standings() {
-  const [displaySettings, setDisplaySettings] = useState(buttonOptions[0].name);
+  const [displaySettings, setDisplaySettings] = useState<StandingsSortOptions>(
+    buttonOptions[0].name,
+  );
   const { isLoading: isLoadingStandings, data: standings } = useQuery<
     TeamStandings[]
   >({
@@ -19,6 +25,10 @@ export default function Standings() {
     // might try to add more logic at some point to cache during the day/not game time
     //staleTime: 3600000
   });
+  const sortedStandings = useMemo(() => {
+    if (!standings) return [];
+    return sortTeams(displaySettings, standings);
+  }, [displaySettings, standings]);
 
   if (isLoadingStandings) {
     return <h1>Loading the current NHL Standings ...</h1>;
@@ -27,7 +37,7 @@ export default function Standings() {
     return <h1>Error getting standings</h1>;
   }
 
-  console.log("buttonState, ", displaySettings);
+  console.log("sorted Standings", sortedStandings);
 
   return (
     <div>

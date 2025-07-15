@@ -10,6 +10,7 @@ TODO:
   - sorting?
   - Division/conference/wildcard/league toggle styling
   - division/conference/wildcard views
+    - update standings headers to not be hardcoded
   - Write unit tests for standings sorting logic
 - Team view
   - UI

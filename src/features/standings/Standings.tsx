@@ -51,15 +51,21 @@ export default function Standings() {
 
       {displaySettings === "division" && (
         <div>
+          <h2>Central Division</h2>
           <StandingsWidget standingsData={sortedStandings["central"]} />
+          <h2>Pacific Division</h2>
           <StandingsWidget standingsData={sortedStandings["pacific"]} />
+          <h2>Atlantic Division</h2>
           <StandingsWidget standingsData={sortedStandings["atlantic"]} />
+          <h2>Metropolitan Division</h2>
           <StandingsWidget standingsData={sortedStandings["metropolitan"]} />
         </div>
       )}
       {displaySettings === "conference" && (
         <div>
+          <h2>Western Conference</h2>
           <StandingsWidget standingsData={sortedStandings["western"]} />
+          <h2>Eastern Conference</h2>
           <StandingsWidget standingsData={sortedStandings["eastern"]} />
         </div>
       )}
@@ -70,11 +76,17 @@ export default function Standings() {
       )}
       {displaySettings === "wildcard" && (
         <div>
+          <h2>Central Division</h2>
           <StandingsWidget standingsData={sortedStandings["central"]} />
+          <h2>Pacific Division</h2>
           <StandingsWidget standingsData={sortedStandings["pacific"]} />
+          <h2>Wildcard West</h2>
           <StandingsWidget standingsData={sortedStandings["western"]} />
+          <h2>Atlantic Division</h2>
           <StandingsWidget standingsData={sortedStandings["atlantic"]} />
+          <h2>Metropolitan Division</h2>
           <StandingsWidget standingsData={sortedStandings["metropolitan"]} />
+          <h2>Wildcard East</h2>
           <StandingsWidget standingsData={sortedStandings["eastern"]} />
         </div>
       )}

@@ -1,14 +1,15 @@
 import { TeamStandings } from "../../../types/standings/standings-types";
 import { columns } from "../util/standings-columns";
-import "./standings-widget.css";
+import "./standings-table.css";
 
 import {
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
-export default function StandingsWidget({
+export default function StandingsTable({
   standingsData,
 }: {
   standingsData: TeamStandings[];
@@ -17,6 +18,7 @@ export default function StandingsWidget({
     columns,
     data: standingsData ?? [],
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
@@ -27,7 +29,11 @@ export default function StandingsWidget({
             return (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <th
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    onClick={header.column.getToggleSortingHandler()}
+                  >
                     {flexRender(
                       header.column.columnDef.header,
                       header.getContext(),

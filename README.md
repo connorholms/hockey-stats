@@ -7,15 +7,15 @@ TODO:
   - establish color scheme, fonts, header design etc
 - Standings:
   - more table info or separate widget for standings sidebar and page?
-  - sorting?
   - Division/conference/wildcard/league toggle styling
   - division/conference/wildcard views
-    - update standings headers to not be hardcoded
+    - update standings headers to not be hardcoded + style
   - Write unit tests for standings sorting logic
 - Team view
   - UI
-  - Divisions?
-  - _once DB is ready_: Formatting (ex: save logos on DB and load with teams?)
+  - _once DB is ready_:
+    - Formatting (ex: save logos on DB and load with teams?)
+    - Divisions?
 - Roster
   - UI (images, table etc)
   - Team info in route (team name etc)

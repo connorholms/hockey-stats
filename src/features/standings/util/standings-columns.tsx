@@ -1,31 +1,18 @@
-import {
-  TeamStandings,
-  StandingsTeamName,
-} from "../../../types/standings/standings-types";
+import { TeamStandings } from "../../../types/standings/standings-types";
 
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
-
-type TeamNameRow = {
-  logoUrl: string;
-  teamName: StandingsTeamName;
-};
 
 const columnHelper = createColumnHelper<TeamStandings>();
 
 export const columns: ColumnDef<TeamStandings>[] = [
   {
-    accessorFn: (row): TeamNameRow => {
-      return {
-        logoUrl: row.teamLogo,
-        teamName: row.teamName,
-      };
-    },
+    accessorFn: (row): string => row.teamName.default,
     header: "Team",
     cell: (cell) => {
-      const teamValues: any = cell.getValue();
+      const teamValues: any = cell.row.original;
       return (
         <div className="standings-team-name">
-          <img src={teamValues.logoUrl} alt="team logo" />
+          <img src={teamValues.teamLogo} alt="team logo" />
           <span className="standings-team-name-text">
             {teamValues.teamName.default}
           </span>

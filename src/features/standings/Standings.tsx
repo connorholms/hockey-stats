@@ -6,7 +6,7 @@ import {
   StandingsSortOptions,
   TeamStandings,
 } from "../../types/standings/standings-types";
-import StandingsWidget from "./components/Standings-widget";
+import StandingsTable from "./components/Standings-table";
 import { buttonOptions } from "./types/standings";
 import ToggleButton from "../../components/ui/Toggle-button";
 import "./standings.css";
@@ -37,8 +37,6 @@ export default function Standings() {
     return <h1>Error getting standings</h1>;
   }
 
-  console.log("sorted Standings", sortedStandings);
-
   return (
     <div>
       <h1>Standings</h1>
@@ -52,42 +50,42 @@ export default function Standings() {
       {displaySettings === "division" && (
         <div>
           <h2>Central Division</h2>
-          <StandingsWidget standingsData={sortedStandings["central"]} />
+          <StandingsTable standingsData={sortedStandings["central"]} />
           <h2>Pacific Division</h2>
-          <StandingsWidget standingsData={sortedStandings["pacific"]} />
+          <StandingsTable standingsData={sortedStandings["pacific"]} />
           <h2>Atlantic Division</h2>
-          <StandingsWidget standingsData={sortedStandings["atlantic"]} />
+          <StandingsTable standingsData={sortedStandings["atlantic"]} />
           <h2>Metropolitan Division</h2>
-          <StandingsWidget standingsData={sortedStandings["metropolitan"]} />
+          <StandingsTable standingsData={sortedStandings["metropolitan"]} />
         </div>
       )}
       {displaySettings === "conference" && (
         <div>
           <h2>Western Conference</h2>
-          <StandingsWidget standingsData={sortedStandings["western"]} />
+          <StandingsTable standingsData={sortedStandings["western"]} />
           <h2>Eastern Conference</h2>
-          <StandingsWidget standingsData={sortedStandings["eastern"]} />
+          <StandingsTable standingsData={sortedStandings["eastern"]} />
         </div>
       )}
       {displaySettings === "league" && (
         <div>
-          <StandingsWidget standingsData={standings} />
+          <StandingsTable standingsData={standings} />
         </div>
       )}
       {displaySettings === "wildcard" && (
         <div>
           <h2>Central Division</h2>
-          <StandingsWidget standingsData={sortedStandings["central"]} />
+          <StandingsTable standingsData={sortedStandings["central"]} />
           <h2>Pacific Division</h2>
-          <StandingsWidget standingsData={sortedStandings["pacific"]} />
+          <StandingsTable standingsData={sortedStandings["pacific"]} />
           <h2>Wildcard West</h2>
-          <StandingsWidget standingsData={sortedStandings["western"]} />
+          <StandingsTable standingsData={sortedStandings["western"]} />
           <h2>Atlantic Division</h2>
-          <StandingsWidget standingsData={sortedStandings["atlantic"]} />
+          <StandingsTable standingsData={sortedStandings["atlantic"]} />
           <h2>Metropolitan Division</h2>
-          <StandingsWidget standingsData={sortedStandings["metropolitan"]} />
+          <StandingsTable standingsData={sortedStandings["metropolitan"]} />
           <h2>Wildcard East</h2>
-          <StandingsWidget standingsData={sortedStandings["eastern"]} />
+          <StandingsTable standingsData={sortedStandings["eastern"]} />
         </div>
       )}
     </div>

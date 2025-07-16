@@ -1,6 +1,7 @@
 import { TeamStandings } from "../../../types/standings/standings-types";
 
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
+import Teams from "../../teams/Teams";
 
 const columnHelper = createColumnHelper<TeamStandings>();
 
@@ -9,7 +10,7 @@ export const columns: ColumnDef<TeamStandings>[] = [
     accessorFn: (row): string => row.teamName.default,
     header: "Team",
     cell: (cell) => {
-      const teamValues: any = cell.row.original;
+      const teamValues = cell.row.original;
       return (
         <div className="standings-team-name">
           <img src={teamValues.teamLogo} alt="team logo" />
@@ -98,4 +99,31 @@ export const columns: ColumnDef<TeamStandings>[] = [
       align: "center",
     },
   }),
+  {
+    accessorFn: (team) => `${team.shootoutWins} - ${team.shootoutLosses}`,
+    header: "SO",
+    cell: (data) => data.renderValue(),
+    enableSorting: false,
+  },
+  {
+    accessorFn: (team) =>
+      `${team.homeWins} - ${team.homeLosses} - ${team.homeOtLosses}`,
+    header: "Home",
+    cell: (data) => data.renderValue(),
+    enableSorting: false,
+  },
+  {
+    accessorFn: (team) =>
+      `${team.roadWins} - ${team.roadLosses} - ${team.roadOtLosses}`,
+    header: "Road",
+    cell: (data) => data.renderValue(),
+    enableSorting: false,
+  },
+  {
+    accessorFn: (team) =>
+      `${team.l10Wins} - ${team.l10Losses} - ${team.l10OtLosses}`,
+    header: "L10",
+    cell: (data) => data.renderValue(),
+    enableSorting: false,
+  },
 ];

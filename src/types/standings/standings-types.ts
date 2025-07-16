@@ -123,3 +123,9 @@ export interface WildcardTeamsStandings {
   western: TeamStandings[];
   eastern: TeamStandings[];
 }
+
+export type StandingsSortOptions =
+  | "league"
+  | "conference"
+  | "division"
+  | "wildcard";

@@ -56,4 +56,46 @@ export const columns: ColumnDef<TeamStandings>[] = [
       align: "center",
     },
   }),
+  columnHelper.accessor("pointPctg", {
+    header: "PTS %",
+    cell: (data) => data.renderValue()?.toFixed(3),
+    meta: {
+      align: "center",
+    },
+  }),
+  columnHelper.accessor("regulationWins", {
+    header: "RW",
+    cell: (data) => data.renderValue(),
+    meta: {
+      align: "center",
+    },
+  }),
+  columnHelper.accessor("regulationPlusOtWins", {
+    header: "ROW",
+    cell: (data) => data.renderValue(),
+    meta: {
+      align: "center",
+    },
+  }),
+  columnHelper.accessor("goalFor", {
+    header: "GF",
+    cell: (data) => data.renderValue(),
+    meta: {
+      align: "center",
+    },
+  }),
+  columnHelper.accessor("goalAgainst", {
+    header: "GA",
+    cell: (data) => data.renderValue(),
+    meta: {
+      align: "center",
+    },
+  }),
+  columnHelper.accessor("goalDifferential", {
+    header: "GD",
+    cell: (data) => data.renderValue(),
+    meta: {
+      align: "center",
+    },
+  }),
 ];

@@ -48,7 +48,11 @@ export default function StandingsTable({
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} align={cell.column.columnDef?.meta?.align}>
+                <td
+                  key={cell.id}
+                  align={cell.column.columnDef?.meta?.align}
+                  className="standings-data-cell"
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getActiveTeams } from "../../api/teams";
 import { Link } from "@tanstack/react-router";
 import { Team } from "../../types/teams/teams-list";
+import "./Teams.css";
 
 export default function Teams() {
   const {
@@ -31,8 +32,10 @@ export default function Teams() {
       <div className="teams-list">
         {activeTeams.map((team) => {
           return (
-            <div key={team.id}>
-              <Link to={`${team.triCode}/current`}>{team.fullName}</Link>
+            <div className="team-name-container" key={team.id}>
+              <Link className="team-name" to={`${team.triCode}/current`}>
+                {team.fullName}
+              </Link>
             </div>
           );
         })}

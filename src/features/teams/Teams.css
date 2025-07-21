@@ -2,3 +2,13 @@
     display: flex;
     flex-direction: column;
 }
+
+.team-name {
+    color: black;
+    font-size: large;
+    text-decoration: none;
+}
+
+.team-name-container {
+    margin: 5px 6px;
+}

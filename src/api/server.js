@@ -1,9 +1,23 @@
 import Fastify from "fastify";
+import cors from "@fastify/cors";
+import { Pool } from "pg";
 
 const PORT = process.env.port || 3000;
 
+const db = new Pool({
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  host: "localhost",
+  database: process.env.POSTGRES_DB,
+  port: 5432,
+});
+
 const server = Fastify({
   logger: true,
+});
+
+server.register(cors, {
+  origin: "*",
 });
 
 server.get("/api/standings", async function getStandings(request, reply) {

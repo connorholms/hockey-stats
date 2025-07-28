@@ -4,10 +4,7 @@ import { Team, TeamSortOptions } from "../types/teams/teams-list";
 export async function getActiveTeams(sortBy: TeamSortOptions = "league") {
   const response = await fetch("api/active-teams");
   const json = await response.json();
-  const allTeams: Team[] = json.data;
-  const activeTeams = allTeams.filter((teamData) => {
-    return isActiveTeam(teamData.fullName);
-  });
+  const activeTeams: Team[] = json.rows;
   return sortTeamsAlphabetical(activeTeams);
 }
 

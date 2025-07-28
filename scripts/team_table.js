@@ -1,5 +1,3 @@
-import { fail } from "assert";
-import { getRandomValues } from "crypto";
 import { Pool } from "pg";
 
 export const activeTeams = [
@@ -90,7 +88,7 @@ async function createTeamTable() {
       team.fullName,
       team.leagueId,
       team.rawTricode,
-      team.tricode,
+      team.triCode,
       team.teamLogo,
       team.conference,
       team.division,

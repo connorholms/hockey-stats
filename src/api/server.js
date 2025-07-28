@@ -1,8 +1,11 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import { Pool } from "pg";
+import dotenv from "dotenv";
 
 const PORT = process.env.port || 3000;
+
+dotenv.config({ path: "../../.env" });
 
 const db = new Pool({
   user: process.env.POSTGRES_USER,
@@ -34,9 +37,10 @@ server.get("/api/standings", async function getStandings(request, reply) {
 
 server.get("/api/active-teams", async function getActiveTeams(request, reply) {
   try {
-    const response = await fetch("https://api.nhle.com/stats/rest/en/team");
-    const json = await response.json();
-    reply.code(200).send(json);
+    const response = await db.query(
+      `SELECT id, franchise_id as "franchiseId", full_name as "fullName", league_id as "leagueId", raw_tricode as "rawTricode", tricode as "triCode", team_logo as "teamLogo", conference_name as "conference", division_name as "division" FROM teams`,
+    );
+    reply.code(200).send(response);
   } catch (err) {
     reply
       .status(500)

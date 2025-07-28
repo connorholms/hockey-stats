@@ -19,4 +19,7 @@ export type Team = {
   leagueId: number;
   rawTricode: string;
   triCode: string;
+  teamLogo: string;
+  conference: string;
+  division: string;
 };

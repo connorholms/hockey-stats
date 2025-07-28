@@ -1,5 +1,7 @@
 This is an WIP project for playing around in react and building a landing space for a future NHL analytics project
 
+npm commands in the package-json will set up the vite server, server and db until I get it all hosted on AWS
+
 TODO:
 
 - UI
@@ -13,9 +15,7 @@ TODO:
   - Write unit tests for standings sorting logic
 - Team view
   - UI
-  - _once DB is ready_:
-    - Formatting (ex: save logos on DB and load with teams?)
-    - Divisions?
+  - Conference View?
 - Roster
   - UI (images, table etc)
   - Team info in route (team name etc)

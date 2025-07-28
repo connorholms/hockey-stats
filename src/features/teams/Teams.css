@@ -7,8 +7,15 @@
     color: black;
     font-size: large;
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .team-name-container {
     margin: 5px 6px;
+}
+
+.team-logo{
+    height: 22px;
+    padding: 5px
 }

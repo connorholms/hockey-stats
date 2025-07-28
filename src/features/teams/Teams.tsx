@@ -34,7 +34,12 @@ export default function Teams() {
           return (
             <div className="team-name-container" key={team.id}>
               <Link className="team-name" to={`${team.triCode}/current`}>
-                {team.fullName}
+                <img
+                  src={team.teamLogo}
+                  alt={team.fullName}
+                  className="team-logo"
+                />
+                <span>{team.fullName}</span>
               </Link>
             </div>
           );

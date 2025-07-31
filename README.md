@@ -25,6 +25,3 @@ TODO:
   - future database integration? (might not be best for live stats)
   - format table to include stats
   - check typings and do a review of existing code
-- Database:
-  - add team table with logos and basic information grabbed from the different endpoints
-    - (or multiple tables and join where needed)

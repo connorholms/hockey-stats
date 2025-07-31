@@ -3,6 +3,7 @@ import { getPlayerInfo } from "../../../api/player";
 import { Route } from "../../../routes/players/$playerId";
 import PlayerHeader from "./Player-bio";
 import PlayerStats from "./Player-stats";
+import { PlayerStatTotals } from "../types/player-types";
 
 export default function Player() {
   const { playerId }: { playerId: string } = Route.useLoaderData();
@@ -12,6 +13,11 @@ export default function Player() {
     queryFn: () => getPlayerInfo(playerId),
   });
 
+  const playerStatTotals: PlayerStatTotals = {
+    careerTotals: playerData.careerTotals,
+    seasonTotals: playerData.seasonTotals,
+  };
+
   if (isLoadingPlayer) {
     return <div>Loading Player Data...</div>;
   }
@@ -19,7 +25,7 @@ export default function Player() {
   return (
     <>
       <PlayerHeader playerInfo={playerData} />
-      <PlayerStats />
+      <PlayerStats playerStatTotals={playerStatTotals} />
     </>
   );
 }
